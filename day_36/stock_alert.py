@@ -3,8 +3,8 @@ import urllib3
 
 from twilio_messages import *
 
-STOCK_API_KEY = os.getenv('STOCK_API_KEY')
-NEWS_API_KEY = os.getenv('NEWS_API_KEY')
+STOCK_API_KEY = 'YF6VHYEBRFFSG1ZK'
+NEWS_API_KEY = '008c016a654a470090cae7c1532abc80'
 NEWS_ENDPOINT = 'https://newsapi.org/v2/everything'
 STOCK_ENDPOINT = 'https://www.alphavantage.co/query'
 STOCK = 'TSLA'
@@ -38,10 +38,11 @@ def get_stock_price():
 
 
 value = get_stock_price()
+
 if value > 0:
     symbol = '🔺'
 else:
     symbol = '🔻'
 for news in get_news():
     msg = f'{STOCK}: {symbol}{value}%\nHeadline: {news["title"]}\nBrief: {news["description"]}'
-    print(msg)
+    sms(msg)
