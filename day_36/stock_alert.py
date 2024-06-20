@@ -3,8 +3,6 @@ import urllib3
 
 from twilio_messages import *
 
-# STOCK: 'F3SX61OJ4AWN7EW6'
-# NEWS: '008c016a654a470090cae7c1532abc80'
 STOCK_API_KEY = os.getenv('STOCK_API_KEY')
 NEWS_API_KEY = os.getenv('NEWS_API_KEY')
 NEWS_ENDPOINT = 'https://newsapi.org/v2/everything'
