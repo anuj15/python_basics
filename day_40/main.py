@@ -10,6 +10,7 @@ for country, city in get_cities().items():
     min_price = get_min_flight_price(iata_code)
     set_lowest_price(row, list(min_price.keys())[0])
     set_lowest_price_date(row, list(min_price.values())[0])
+    set_stops(row, get_stops())
     row += 1
 for row in compare_prices():
     msg = (f'Low Price Alert! Only ₹{row["lowestprice"]} to fly from {SOURCE_IATA} to {row["iatacode"]},'

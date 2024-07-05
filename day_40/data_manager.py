@@ -55,6 +55,17 @@ def set_lowest_price_date(row, date):
     return response.status_code == 200
 
 
+def set_stops(row, stops):
+    url = f'https://api.sheety.co/{api_key}/{workbook}/{sheet_1}/{row}'
+    data = {
+        'price': {
+            'stops': stops,
+        }
+    }
+    response = requests.put(url=url, json=data)
+    return response.status_code == 200
+
+
 def set_user_data(data):
     url = f'https://api.sheety.co/{api_key}/{workbook}/{sheet_2}'
     data = {
