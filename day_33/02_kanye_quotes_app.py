@@ -1,12 +1,10 @@
 from tkinter import *
-import urllib3
 
 import requests
 
 
 def display_quote():
-    urllib3.disable_warnings()
-    response = requests.get(url='https://api.kanye.rest', verify=False)
+    response = requests.get(url='https://api.kanye.rest')
     response.raise_for_status()
     quote = response.json()['quote']
     canvas.itemconfig(canvas_quote, text=quote, fill='white')

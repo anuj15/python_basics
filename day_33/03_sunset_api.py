@@ -1,6 +1,6 @@
-import requests
-import urllib3
 from datetime import datetime as dt
+
+import requests
 
 my_lat = 51.507351
 my_long = -0.127758
@@ -10,8 +10,7 @@ parameters = {
     'lng': my_long,
     'formatted': 0,
 }
-urllib3.disable_warnings()
-response = requests.get(url='https://api.sunrise-sunset.org/json', params=parameters, verify=False)
+response = requests.get(url='https://api.sunrise-sunset.org/json', params=parameters)
 response.raise_for_status()
 data = response.json()
 sunset = data['results']['sunset'].split('T')[1].split(':')[0]

@@ -2,7 +2,6 @@ from datetime import date, timedelta
 
 from flight_data import *
 
-urllib3.disable_warnings()
 SOURCE_IATA = 'DEL'
 END_DATE = date.today() + timedelta(days=180)
 response = ''
@@ -24,7 +23,7 @@ def flight_search(destination_iata, non_stop='true'):
             'currencyCode': 'INR',
             'nonStop': non_stop,
         }
-        response = requests.get(url=endpoint, params=params, headers=headers, verify=False).json()
+        response = requests.get(url=endpoint, params=params, headers=headers).json()
         if response['meta'].get('count') == 0:
             response = flight_search(destination_iata, 'false')
         return response

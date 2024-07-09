@@ -3,7 +3,6 @@ import time
 from datetime import datetime as dt
 
 import requests
-import urllib3
 
 host = 'smtp.gmail.com'
 port = 587
@@ -17,11 +16,9 @@ msg = f'{subject}\n\n{body}'
 my_lat = 51.507351
 my_long = -0.127758
 
-urllib3.disable_warnings()
-
 
 def is_iss_overhead():
-    response = requests.get(url='http://api.open-notify.org/iss-now.json', verify=False)
+    response = requests.get(url='http://api.open-notify.org/iss-now.json')
     response.raise_for_status()
     data = response.json()
     iss_lat = float(data['iss_position']['latitude'])
@@ -35,7 +32,7 @@ def is_night():
         'lng': my_long,
         'formatted': 0,
     }
-    response = requests.get(url='https://api.sunrise-sunset.org/json', params=parameters, verify=False)
+    response = requests.get(url='https://api.sunrise-sunset.org/json', params=parameters)
     response.raise_for_status()
     data = response.json()
     sunset = int(data['results']['sunset'].split('T')[1].split(':')[0])

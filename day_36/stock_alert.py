@@ -1,5 +1,4 @@
 import requests
-import urllib3
 
 from twilio_messages import *
 
@@ -10,15 +9,13 @@ STOCK_ENDPOINT = 'https://www.alphavantage.co/query'
 STOCK = 'TSLA'
 COMPANY_NAME = 'Tesla Inc'
 
-urllib3.disable_warnings()
-
 
 def get_news():
     parameters = {
         'q': COMPANY_NAME,
         'apiKey': NEWS_API_KEY,
     }
-    response = requests.get(url=NEWS_ENDPOINT, params=parameters, verify=False)
+    response = requests.get(url=NEWS_ENDPOINT, params=parameters)
     response.raise_for_status()
     return response.json()['articles'][:3]
 
@@ -29,7 +26,7 @@ def get_stock_price():
         'symbol': STOCK,
         'apikey': STOCK_API_KEY,
     }
-    response = requests.get(url=STOCK_ENDPOINT, params=parameters, verify=False)
+    response = requests.get(url=STOCK_ENDPOINT, params=parameters)
     response.raise_for_status()
     data = [v['4. close'] for (k, v) in response.json()['Time Series (Daily)'].items()][:2]
     y_close_price = float(data[0])

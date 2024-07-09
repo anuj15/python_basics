@@ -1,10 +1,7 @@
 import requests
-import urllib3
 from bs4 import BeautifulSoup
 
-urllib3.disable_warnings()
-
-contents = requests.get(url='https://news.ycombinator.com/news', verify=False).text
+contents = requests.get(url='https://news.ycombinator.com/news').text
 soup = BeautifulSoup(markup=contents, features='html.parser')
 titles = [x.text for x in soup.select(selector='.titleline > a')]
 links = [x.get('href') for x in soup.select(selector='.titleline > a')]

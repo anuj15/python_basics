@@ -1,7 +1,4 @@
 import requests
-import urllib3
-
-urllib3.disable_warnings()
 
 API_KEY = 'TU9IzwVX5AS4R4qbWIPjc06mHrvHAGhc'
 API_SECRET = 'sntS7BJ8No7zLUjD'
@@ -20,7 +17,7 @@ def get_token():
         'client_id': API_KEY,
         'client_secret': API_SECRET,
     }
-    response = requests.post(url=url, data=data, headers=header, verify=False)
+    response = requests.post(url=url, data=data, headers=header)
     return response.json()['access_token']
 
 
@@ -33,5 +30,5 @@ def get_iata_code(country, city):
     headers = {
         'Authorization': f'Bearer {get_token()}',
     }
-    response = requests.get(url=endpoint, params=parameters, headers=headers, verify=False)
+    response = requests.get(url=endpoint, params=parameters, headers=headers)
     return response.json()['data'][0]['iataCode']

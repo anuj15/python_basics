@@ -2,7 +2,6 @@ from datetime import date, timedelta
 
 from flight_data import *
 
-urllib3.disable_warnings()
 SOURCE_IATA = 'DEL'
 END_DATE = date.today() + timedelta(days=180)
 
@@ -22,6 +21,6 @@ def get_min_flight_price(destination_iata):
             'adults': 1,
             'currencyCode': 'INR',
         }
-        response = requests.get(url=endpoint, params=params, headers=headers, verify=False).json()['data']
+        response = requests.get(url=endpoint, params=params, headers=headers).json()['data']
         prices.append({x['price']['total']: x['lastTicketingDate'] for x in response})
     return {min(x.keys()): x[min(x.keys())] for x in prices}

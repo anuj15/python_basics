@@ -1,9 +1,7 @@
 from datetime import datetime as dt
 
 import requests
-import urllib3
 
-urllib3.disable_warnings()
 PIXELA_BASE_URL = 'https://pixe.la'
 USER_ENDPOINT = f'{PIXELA_BASE_URL}/v1/users'
 TOKEN = 'anuj1234'
@@ -25,7 +23,7 @@ def create_user():
         'agreeTermsOfService': 'yes',
         'notMinor': 'yes',
     }
-    response = requests.post(url=USER_ENDPOINT, json=parameters, verify=False)
+    response = requests.post(url=USER_ENDPOINT, json=parameters)
     print(response.text)
 
 
@@ -37,7 +35,7 @@ def create_graph():
         'type': 'float',
         'color': 'ajisai',
     }
-    response = requests.post(url=GRAPH_ENDPOINT, json=parameters, headers=HEADERS, verify=False)
+    response = requests.post(url=GRAPH_ENDPOINT, json=parameters, headers=HEADERS)
     print(response.text)
 
 
@@ -46,7 +44,7 @@ def create_pixel():
         'date': RANDOM_DAY,
         'quantity': '5',
     }
-    response = requests.post(url=PIXEL_ENDPOINT, json=parameters, headers=HEADERS, verify=False)
+    response = requests.post(url=PIXEL_ENDPOINT, json=parameters, headers=HEADERS)
     print(response.text)
 
 
@@ -54,12 +52,12 @@ def update_pixel():
     parameters = {
         'quantity': '10',
     }
-    response = requests.put(url=UPDATE_PIXEL_ENDPOINT, json=parameters, headers=HEADERS, verify=False)
+    response = requests.put(url=UPDATE_PIXEL_ENDPOINT, json=parameters, headers=HEADERS)
     print(response.text)
 
 
 def delete_pixel():
-    response = requests.delete(url=UPDATE_PIXEL_ENDPOINT, headers=HEADERS, verify=False)
+    response = requests.delete(url=UPDATE_PIXEL_ENDPOINT, headers=HEADERS)
     print(response.text)
 
 
