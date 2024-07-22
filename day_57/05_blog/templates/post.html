@@ -10,15 +10,18 @@
 <div class="wrapper">
     <div class="top">
         <div class="title"><h1>My Blog</h1></div>
-           </div>
-        <div class="content">
-            <div class="card">
-                <h2>{{blogs[num]['title']}}</h2>
-                <h3>{{blogs[num]['subtitle']}}</h3>
-                <p>{{blogs[num]['body']}}</p>
-            </div>
-
     </div>
+    {% for blog in blogs: %}
+    {% if blog.id == num: %}
+    <div class="content">
+        <div class="card">
+            <h2>{{ blog.title }}</h2>
+            <h3>{{ blog.subtitle }}</h3>
+            <p>{{ blog.body }}</p>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
 </div>
 </body>
 <footer>

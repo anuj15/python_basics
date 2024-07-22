@@ -9,7 +9,7 @@ today = dt.now().strftime('%Y-%m-%d')
 
 @app.route('/')
 def home():
-    return render_template('index1.html', posts=all_posts)
+    return render_template('index.html', posts=all_posts)
 
 
 @app.route('/about')

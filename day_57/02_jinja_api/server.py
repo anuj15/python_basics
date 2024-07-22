@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     current_year = dt.now().year
-    return render_template('index1.html', year=current_year)
+    return render_template('index.html', year=current_year)
 
 
 @app.route('/guess/<name>')
