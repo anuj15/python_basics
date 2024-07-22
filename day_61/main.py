@@ -8,7 +8,7 @@ app.secret_key = 'a random string'
 
 @app.route("/")
 def home():
-    return render_template('index.html')
+    return render_template('index1.html')
 
 
 @app.route("/login", methods=['POST', 'GET'])

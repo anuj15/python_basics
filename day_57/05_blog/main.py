@@ -7,7 +7,7 @@ blogs = requests.get('https://api.npoint.io/c790b4d5cab58020d391').json()
 
 @app.route('/')
 def home():
-    return render_template("index.html", blogs=blogs)
+    return render_template("index1.html", blogs=blogs)
 
 
 @app.route('/post/<int:num>')
