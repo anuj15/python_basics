@@ -1,9 +1,13 @@
 from datetime import datetime as dt
+
 import requests
+import urllib3
 from flask import Flask, render_template
 
 app = Flask(__name__)
-all_posts = requests.get('https://api.npoint.io/674f5423f73deab1e9a7').json()
+urllib3.disable_warnings()
+
+all_posts = requests.get('https://api.npoint.io/674f5423f73deab1e9a7', verify=False).json()
 today = dt.now().strftime('%Y-%m-%d')
 
 
@@ -28,4 +32,4 @@ def post(num):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=8080)
