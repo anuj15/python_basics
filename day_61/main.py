@@ -1,9 +1,11 @@
 from flask import Flask, render_template
+from flask_bootstrap import Bootstrap5
 
 from wtf_forms import MyForm
 
 app = Flask(__name__)
-app.secret_key = 'a random string'
+app.secret_key = "some secret string"
+bootstrap = Bootstrap5(app)
 
 
 @app.route("/")
@@ -11,12 +13,16 @@ def home():
     return render_template('index.html')
 
 
-@app.route("/login", methods=['POST', 'GET'])
+@app.route('/login', methods=['POST', 'GET'])
 def login():
-    login_form = MyForm()
-    login_form.validate_on_submit()
-    return render_template('login.html', form=login_form)
+    form = MyForm()
+    if form.email.data == '1@1.1' and form.password.data == '12345678':
+        return render_template('success.html')
+    if form.validate_on_submit():
+        return render_template('denied.html')
+    else:
+        return render_template('login.html', form=form)
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=80)
+    app.run(debug=True, port=8080)
